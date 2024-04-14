@@ -1,17 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, View, Modal, TouchableOpacity } from 'react-native';
-
+import { StyleSheet, Text, View, Modal, TouchableOpacity, TextInput } from 'react-native';
+import SearchPopup from './SearchPopup';
 export default function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
-
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [inputText, setInputText] = useState(''); // To store the text input by the user
+  const [isSearchPopupVisible, setIsSearchPopupVisible] = useState(false);
   const handleSearchPress = () => {
     // Action for Search button
+    setIsSearchPopupVisible(true)
     console.log('Search button pressed');
+  };
+
+  const handleSearchClose = () => {
+    setIsSearchPopupVisible(false); // Set the search popup visibility to false
   };
 
   const handleAddOrRemovePress = () => {
     // Action for Add or Remove button
+    setIsPopupVisible(true);
     console.log('Add or Remove button pressed');
   };
 
@@ -23,6 +31,23 @@ export default function App() {
   const handleCloseModalPress = () => {
     setIsModalVisible(false); // Set the modal visibility to false when the close button in the modal is pressed
     console.log('Modal closed');
+  };
+  const handleInputChange = (text) => {
+    setInputText(text); // Update the input text state
+  };
+
+  const handleSubmit = () => {
+    // Action for handling form submission, e.g., sending data to server or updating state
+    console.log('Form submitted with input:', inputText);
+    // Reset input text after submission
+    setInputText('');
+    // Close the popup modal
+    setIsPopupVisible(false);
+  };
+
+  const handleClosePopup = () => {
+    // Action for closing the popup modal
+    setIsPopupVisible(false);
   };
 
   return (
@@ -40,15 +65,39 @@ export default function App() {
         </TouchableOpacity>
       </View>
       <Text style={styles.creator}>Creator: Marcos Rivera</Text>
+      <Modal visible={isSearchPopupVisible} transparent={true} animationType='slide'>
+        <View style={styles.popupContainer}>
+          <SearchPopup onClose={handleSearchClose}/> {/* Add the SearchPopup component */}
+        </View>
+      </Modal>
       <Modal visible={isModalVisible} animationType='slide'>
         <View style={styles.modalContent}>
           <Text style={styles.modalText}>Modal Content</Text>
-          <TouchableOpacity style={styles.closeButton} onPress={handleCloseModalPress}>
+          <TouchableOpacity style={styles.closeButtonModal} onPress={handleCloseModalPress}>
             <Text style={styles.closeButtonText}>Close</Text>
           </TouchableOpacity>
         </View>
-      </Modal>
+      </Modal> 
+      {isPopupVisible && (
+      <View style={styles.popupContainer}>
+        <Text style={styles.popupText}>Type "add xxx" or "remove xxx" to modify the security database</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Type here..."
+          onChangeText={handleInputChange}
+          value={inputText}
+        />
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+            <Text style={styles.buttonText}>Submit</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.closeButton} onPress={handleClosePopup}>
+            <Text style={styles.buttonText}>Close</Text>
+          </TouchableOpacity>
+        </View>
     </View>
+      )}
+  </View>
   );
 }
 
@@ -80,23 +129,46 @@ const styles = StyleSheet.create({
   creator: {
     color: 'orange',
   },
-  modalContent: {
-    flex: 1,
-    justifyContent: 'center',
+  popupContainer: {
+    backgroundColor: 'rgb(33, 33, 33)',
+    padding: 40,
+    borderRadius: 10,
+    elevation: 5,
     alignItems: 'center',
-    backgroundColor: 'white',
-    padding: 20,
   },
-  modalText: {
+  popupText: {
     fontSize: 18,
-    marginBottom: 20,
+    marginBottom: 10,
+    color: 'orange'
   },
-  closeButton: {
-    backgroundColor: 'orange',
+  input: {
+    backgroundColor: 'rgb(94, 94, 94)',
+    width: '100%',
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 10,
+  }, // above is what changes the type here properties 
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+  },
+  submitButton: {
+    backgroundColor: 'rgb(189, 120, 2)',
     padding: 10,
     borderRadius: 5,
   },
-  closeButtonText: {
+  closeButtonModal: {
+    backgroundColor: 'rgb(108,1,1)',
+    padding: 10,
+    borderRadius: 5,
+  },
+  closeButton: {
+    backgroundColor: 'rgb(148,1,1)',
+    padding: 10,
+    borderRadius: 5,
+  },
+  buttonText: {
     color: 'white',
     fontSize: 16,
   },
