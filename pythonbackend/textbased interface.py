@@ -1,8 +1,10 @@
 import sys
+
+
 class Commodity:
     def __init__(self, name, price, time, unit):
         self.name = name
-        self.price = price 
+        self.price = price
         self.time = time
         self.unit = unit
 
@@ -28,9 +30,10 @@ if ans == 'e':
         print(f"Exchange: {exchange.name}")
 elif ans == 'c':
     for commodity in commodity_list:
-        print(f"Commodity: {commodity.name}, Price: {commodity.price}, Last Trade Time: {commodity.time}, Unit: {commodity.unit}")
+        print(
+            f"Commodity: {commodity.name}, Price: {commodity.price}, Last Trade Time: {commodity.time}, Unit: {commodity.unit}")
 
-    
+
 ans2 = input("do you want to add a commodity or exchange. type 'c' or 'e': ")
 
 if ans2 == 'c':

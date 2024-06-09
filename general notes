@@ -1,0 +1,16 @@
+break down of backend folders 
+
+my_app 
+
+*__init__py - keep it empty but you can use it to import specific modules or classes if needed
+*admin.py - used to register models with the Django admin interface. it will allow me to create,read, update, and delete objects. 
+*apps.py - contains configuarations for my application
+*models.py - defines the models (database schemas) for my application
+*tests.py - this contains test for your application. Tests should validate the functionality of my views, models, and other parts of my app
+*views.py - this file contains the views for your application, which handles incoming web reqeusts and return responses
+
+my_projects
+*__init_.py - this files is located at the root directory. it is a special file that allows python to treat the containing directory as a package. It is normally empty but you can use it to define and export variables or functions that need to be available at the package level
+*settings.py - contains configuration settings for your Django project such as data base configuration, middleware, templates, static files (js), allowed hosts, security settings. it is one of the most important files in a Django project
+*urls.py - this file contains URL routing for my applications. It maps URLS to views
+*wsgi - entry point for wsgi compatible web servers to serve your django application. it is essential for deploying my project in a production environment because it acts as a bridge between the web server and my app
