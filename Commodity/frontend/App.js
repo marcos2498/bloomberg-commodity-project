@@ -36,13 +36,39 @@ export default function App() {
     setInputText(text); // Update the input text state
   };
 
-  const handleSubmit = () => {
-    // Action for handling form submission, e.g., sending data to server or updating state
-    console.log('Form submitted with input:', inputText);
-    // Reset input text after submission
-    setInputText('');
-    // Close the popup modal
-    setIsPopupVisible(false);
+  const handleSubmit = async () => {
+    try {
+      // Split the input text by spaces to parse different fields
+      const inputs = inputText.split(' ');
+      
+      // Assuming inputs are provided in the following order: name, description, price, unit
+      const commodityData = {
+        name: inputs[0], // First word is the commodity name
+        description: inputs[1] || '', // Second word (if exists) is the description, default to empty string if not provided
+        price: parseFloat(inputs[2]) || 0, // Third word (if exists) is the price, default to 0 if not provided or invalid
+        unit: inputs[3] || '', // Fourth word (if exists) is the unit, default to empty string if not provided
+      };
+  
+      const response = await fetch('http://localhost:8000/api/add_commodity/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(commodityData),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to add commodity');
+      }
+  
+      const data = await response.json();
+      Alert.alert('Success', data.message); // Show success message from backend
+      setInputText(''); // Clear input field
+      setIsPopupVisible(false); // Close the popup modal
+    } catch (error) {
+      console.error('Error adding commodity:', error);
+      Alert.alert('Error', 'Failed to add commodity. Please try again later.');
+    }
   };
 
   const handleClosePopup = () => {
@@ -58,7 +84,7 @@ export default function App() {
           <Text style={styles.sectionText}>Search database</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.section} onPress={handleAddOrRemovePress}>
-          <Text style={styles.sectionText}>Add or Remove</Text>
+          <Text style={styles.sectionText}> Add Security </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.section} onPress={handleViewExchangesPress}>
           <Text style={styles.sectionText}>View Exchanges</Text>
