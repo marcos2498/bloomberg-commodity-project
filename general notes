@@ -1,3 +1,21 @@
+break down of frontend folders 
+npm - Node package manager 
+*App.js has all the styling for the different components 
+*app.json - used to maintain consistency between different platforms 
+*babel.config.js - essential for transforming your modern JavaScript and JSX code into a format that can be understood by all supported environments (iOS, Android, and web). 
+*package-lock.json ensures that your project uses the exact versions of dependencies that were installed when the file was generated. 
+*package.json -  This file serves multiple purposes, from defining the project's metadata to specifying dependencies and scripts.
+*searchpopup.js - this file defines my search popup and its styling 
+
+
+
+
+
+
+
+
+
+
 break down of backend folders 
 
 my_app 
@@ -14,3 +32,4 @@ my_projects
 *settings.py - contains configuration settings for your Django project such as data base configuration, middleware, templates, static files (js), allowed hosts, security settings. it is one of the most important files in a Django project
 *urls.py - this file contains URL routing for my applications. It maps URLS to views
 *wsgi - entry point for wsgi compatible web servers to serve your django application. it is essential for deploying my project in a production environment because it acts as a bridge between the web server and my app
+*api -
