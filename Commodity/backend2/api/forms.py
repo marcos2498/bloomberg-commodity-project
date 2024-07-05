@@ -1,6 +1,6 @@
 # api/forms.py
 
-from django import forms
+from django import forms #this files handles the creation and rendering of HTML forms
 from .models import Commodity
 
 

@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, Modal, TouchableOpacity, TextInput } from 'react-native';
 import SearchPopup from './SearchPopup';

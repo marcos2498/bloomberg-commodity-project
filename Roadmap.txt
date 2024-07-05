@@ -1,0 +1,29 @@
+What needs to be complete (ordered in level of importance): 7/4/2024 
+Host on cloud service
+Add checks for "add button" 
+Fix search button so that it can display details on a security or exchange
+Fix view button to be able to list all of the exchanges currently in the database
+Add a remove button (need to support partial matches, need a pw to use )
+Optimize for multiple users 
+
+
+Time estimates:
+Researching Cloud service 3 hours >> 2 
+Researching Read me file and creating one 2 hours
+Implementating cloud 6 hours >> 3.5
+**uploading python code 6 hours  
+Add Button checks 1 hours
+Fixing search and view button 6 hours
+add remove button 5 hours
+optimize for mulitple users 5 hours
+Testing and bug fixes 10 hours
+Finalizing Read me and notes files 5 hours
+
+Total - 43 hours
+Est total - 
+Actual total - 
+
+Delays 
+Implemented basic website but will need a lot more time to add in my python code
+Have to figure out how to create a production build version because npm run web doesn't do that. 
+

@@ -33,3 +33,7 @@ my_projects
 *urls.py - this file contains URL routing for my applications. It maps URLS to views
 *wsgi - entry point for wsgi compatible web servers to serve your django application. it is essential for deploying my project in a production environment because it acts as a bridge between the web server and my app
 *api -
+
+
+
+Host - aws >> beanstalk
